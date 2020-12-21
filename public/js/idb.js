@@ -1,5 +1,5 @@
 let db;
-const request = indexedDB.open('budget_tracker', 1);
+const request = indexedDB.open('budget-buddy', 1);
 
 request.onupgradeneeded = function (event) {
     const db = event.target.result;
@@ -16,7 +16,7 @@ request.onsuccess = function (event) {
 };
 
 request.onerror = function (event) {
-    console.log("Error!" + event.target.errorCode);
+    console.log("ERROR" + event.target.errorCode);
 };
 
 
@@ -51,7 +51,7 @@ function sendTransaction() {
                     const store = transaction.objectStore("new_transaction");
                     store.clear();
 
-                    alert('Your ledged has been updated');
+                    alert('Your ledger is now up-to-date!');
                 })
                 .catch(err => {
                     console.log(err);
@@ -60,5 +60,5 @@ function sendTransaction() {
     };
 }
 
-// listen for app coming back online
+// Function for when online functionality returns
 window.addEventListener('online', sendTransaction);
